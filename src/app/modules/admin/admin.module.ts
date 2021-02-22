@@ -11,6 +11,9 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import {FormsModule} from '@angular/forms';
 import {IconsModule, TableModule} from 'ng-uikit-pro-standard';
 import {ContentHeaderComponent} from '../../components/content-header/content-header.component';
+import {CategoriesComponent} from '../categories/categories.component';
+import {DataTablesModule} from 'angular-datatables';
+import {MatButtonModule} from '@angular/material/button';
 
 
 @NgModule({
@@ -21,7 +24,9 @@ import {ContentHeaderComponent} from '../../components/content-header/content-he
     SidebarComponent,
     ControlSidebarComponent,
     FooterComponent,
-    ContentHeaderComponent],
+    ContentHeaderComponent,
+    CategoriesComponent
+  ],
   exports: [
     PreloaderComponent,
     NavbarComponent,
@@ -29,13 +34,16 @@ import {ContentHeaderComponent} from '../../components/content-header/content-he
     ControlSidebarComponent,
     FooterComponent,
     DashboardComponent,
+    CategoriesComponent,
   ],
   imports: [
     CommonModule,
     AdminRoutingModule,
     FormsModule,
     TableModule,
-    IconsModule
+    IconsModule,
+    DataTablesModule,
+    MatButtonModule
   ]
 })
 export class AdminModule { }
