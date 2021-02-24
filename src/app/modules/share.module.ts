@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {ToastService} from 'ng-uikit-pro-standard';
 
 @NgModule({
   declarations: [],
@@ -7,7 +8,7 @@ import { CommonModule } from '@angular/common';
 
   ],
   imports: [
-    CommonModule
+    CommonModule,
   ]
 })
 export class ShareModule { }

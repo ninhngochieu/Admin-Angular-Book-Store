@@ -9,7 +9,7 @@ export class LoginService extends BaseService{
 
   constructor(httpClient: HttpClient) {
     super(httpClient);
-    this.url += 'login';
+    this.url += 'auth/login';
   }
 
   login(info): any {
