@@ -5,6 +5,7 @@ import {slideOut, ToastService} from 'ng-uikit-pro-standard';
 import {LoginService} from './login.service';
 import {Router} from '@angular/router';
 import {AuthService} from '../../auth/auth.service';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -17,7 +18,8 @@ export class LoginComponent implements OnInit {
   constructor(@Inject(DOCUMENT) private document: Document,
               private loginService: LoginService,
               private router: Router,
-              private authService: AuthService
+              private authService: AuthService,
+              private snackBar: MatSnackBar
               ) { }
 
   ngOnInit(): void {
@@ -27,6 +29,7 @@ export class LoginComponent implements OnInit {
       password: new FormControl()
     });
     if (this.authService.isLogin()){
+      this.document.body.classList.remove('login-page');
       this.router.navigateByUrl('/dashboard');
     }
 
@@ -36,12 +39,19 @@ export class LoginComponent implements OnInit {
     console.warn(this.loginForm.value);
     this.loginService.login(this.loginForm.value).subscribe(
       res => {
-        localStorage.setItem('token', res.token);
+        this.authService.setToken(res.token);
+        this.openSnackBar('Chào mừng', 'Close');
         this.router.navigateByUrl('/dashboard');
       },
       err => {
       console.warn('Tài khoản không hợp lê');
+      this.openSnackBar('Tài khoản hoặc mật khẩu không hợp lê', 'Close');
       }
      );
+  }
+  openSnackBar(message: string, action: string): any {
+    this.snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 }

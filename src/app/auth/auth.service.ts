@@ -10,4 +10,16 @@ export class AuthService {
   isLogin(): any {
     return localStorage.getItem('token') != null;
   }
+
+  setToken(token): any {
+    localStorage.setItem('token', token);
+  }
+
+  hasToken(): any {
+    return localStorage.getItem('token') != null;
+  }
+
+  getToken(): string {
+    return localStorage.getItem('token');
+  }
 }
