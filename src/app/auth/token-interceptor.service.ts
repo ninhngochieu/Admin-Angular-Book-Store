@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import {HttpEvent, HttpHandler, HttpInterceptor, HttpRequest} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {tokenize} from '@angular/compiler/src/ml_parser/lexer';
 import {AuthService} from './auth.service';
+import {tap} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -17,6 +17,13 @@ export class TokenInterceptorService implements HttpInterceptor{
         Authorization: 'Bearer ' + this.authService.getToken()
       }
     });
-    return next.handle(tokenizedReq);
+    return next.handle(tokenizedReq).pipe(tap(
+      success => {
+
+      },
+      err => {
+
+      }
+    ));
   }
 }
